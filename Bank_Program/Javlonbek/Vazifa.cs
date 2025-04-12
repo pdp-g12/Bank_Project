@@ -2,6 +2,9 @@
 
 public class BankAccount
 {
+    public string hisobRaqam;
+    public string balans;
+
 
     public BankAccount(string raqam, float boshlangichBalans)
     {
