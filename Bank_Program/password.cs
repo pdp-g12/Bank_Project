@@ -9,29 +9,39 @@ namespace Bank_Program
     class password
     {
 
-        public static bool CheckPassword(string pasw, string pasw1)
+        public static void CheckPassword()
         {
-
-
+            string pasw = "1234";
+      
+           
+            Console.WriteLine("paroldi kriting");
+             names:
+            string pasw1 = Console.ReadLine();
+      
             if (pasw == pasw1)
             {
 
+                Console.WriteLine("kiritgan parol tog'ri");
 
-                Console.WriteLine("kiritgan paerol tog'ri");
-
-                return true;
             }
 
             else
             {
+                Console.WriteLine("kiritgan parol hato");
+                Console.WriteLine("boshqattan urunib koring ");
 
-
-                Console.WriteLine("kiritgan paerol tog'ri");
-
-                return false;
-
+                goto names;
             }
-
+           
+            Console.WriteLine("1.kamunal tolovlar ");
+            Console.WriteLine("  ");
+            Console.WriteLine("2.balans ");
+            Console.WriteLine("  ");
+            Console.WriteLine("3.naqt pul yechish ");
+            Console.WriteLine("  ");
+            Console.WriteLine("4.paynet ");
+            Console.WriteLine("  ");
+         
 
         }
     }
