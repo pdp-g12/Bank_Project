@@ -14,38 +14,42 @@ namespace Bank_Program
             {
                 case 1:
 
-                    Console.WriteLine($"kamunal to'lovlar");
+                    Console.WriteLine("kamunal to'lovlar");
                     Console.WriteLine("1. Issiq suv");
                     Console.WriteLine("2. Gaz");
                     Console.WriteLine("3. Elektr energiya");
 
                 home:;
+                again:;
                     int kamunal = Convert.ToInt32(Console.ReadLine());
 
-                    if (kamunal < 0 || kamunal > 4)
+                    if (kamunal <= 0 || kamunal > 3)
                     {
                         Console.WriteLine("Xato kiritdingiz, qaytadan urinib ko'ring");
                         goto home;
                     }
 
-                  if (sum > 20000)
-                  { 
-                    if (kamunal == 1)
+                    if (sum > 20000)
                     {
-                        Console.WriteLine($"Issiq suv to'lovi: {sum}");
+                        if (kamunal == 1)
+                        {
+                            Console.WriteLine($"Issiq suv to'lovi: {sum}");
+                        }
+                        else if (kamunal == 2)
+                        {
+                            Console.WriteLine($"Gaz to'lovi: {sum}");
+                        }
+                        else if (kamunal == 3)
+                        {
+                            Console.WriteLine($"Elektr energiya to'lovi: {sum}");
+                        }
                     }
-                    else if (kamunal == 2)
-                    {
-                        Console.WriteLine($"Gaz to'lovi: {sum}");
+                    else
+                    { 
+                        Console.WriteLine("Tolovni amalga oshirish uchun 20000 so'mdan koproq mablag' kiritng ");
+                        goto again;
                     }
-                    else if (kamunal == 3)
-                    {
-                        Console.WriteLine($"Elektr energiya to'lovi: {sum}");
-                    }
-                  } else Console.WriteLine("Tolovni amalga oshirish uchun 20000 so'mdan koproq mablag' kiritng ")
-                        break;
-
-
+                    break;
             }
         }
     }
