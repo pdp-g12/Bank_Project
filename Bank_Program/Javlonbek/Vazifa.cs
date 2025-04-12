@@ -2,6 +2,9 @@
 
 public class BankAccount
 {
+    public string hisobRaqam;
+    public string balans;
+
 
     public BankAccount(string raqam, float boshlangichBalans)
     {
@@ -32,18 +35,6 @@ public class BankAccount
     {
         Console.WriteLine("Hisob raqam: " + hisobRaqam);
         Console.WriteLine("Balans: " + balans + " so‘m");
-    }
-}
-class Program
-{
-    static void Main()
-    {
-        BankAccount foydalanuvchi = new BankAccount("123456789", 100000);
-
-        foydalanuvchi.BalansniKorish();
-        foydalanuvchi.PulToldirish(50000);
-        foydalanuvchi.PulYechish(30000);
-        foydalanuvchi.BalansniKorish();
     }
 }
 
