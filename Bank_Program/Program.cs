@@ -24,7 +24,7 @@ if (UserVerificationClass.UserVerification(userName, userInputName, userPassword
 {
     Console.WriteLine("Ism va Parol to'g'ri, akkauntga kirish muvaffaqiyatli amalga oshirildi....");
 RetryServicePref:
-    Console.WriteLine("1.Bankomat - To'lovlar, Kredit");
+    Console.WriteLine("1.Bankomat - Kommunal To'lovlar, Kredit, Mobil aloqa, Naqd pul olish");
     Console.WriteLine("2.Foydalanuvchi hisobdagi puli");
     userServicePref = Convert.ToInt32(Console.ReadLine());
     if (userServicePref != 1 && userServicePref != 2)
