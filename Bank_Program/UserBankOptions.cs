@@ -127,7 +127,10 @@ namespace Bank_Program
                                 Console.WriteLine("Xato kiritdingiz, qaytadan urinib ko'ring");
                                 goto Home;
                             }
-                            else if (userInsurrancePref == 2) Console.WriteLine("To'lovingiz uchun rahmat salomat bo'ling");
+                            else if (userInsurrancePref == 2) { 
+                                Console.WriteLine("To'lovingiz uchun rahmat salomat bo'ling");
+                                return;
+                            }
                             RepeatPay:
                             Console.WriteLine("Yana kamunal tolov qilasizmi? ");
                             Console.WriteLine("1. Ha ");
