@@ -8,7 +8,7 @@ namespace Bank_Program
 {
     class userPassword
     {
-
+        //Sherzod tomonidan yozilgan kod
         public static bool CheckPassword(string userPassword, string userInputPassword)
         {
             if (userInputPassword == userPassword) return true;
