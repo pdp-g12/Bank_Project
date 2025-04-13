@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bank_Program
 {
-    //Xusanov(Shu class kodlarini yozgan odam) & D.Javohir(kodni ozgina tartibga kiritgan odam) & Sherzod va Husanov tomonidan kredit ideasi qilgan odamlar
+    //Xusanov(Shu class kodlarini yozgan odam) & D.Javohir(kodni tartibga kiritgan odam) & Sherzod va Husanov tomonidan kredit ideasi qilgan odamlar
     class UserBankOptions
     {
         public static void userBankMain(int userBankPref, ref double userAccBank, ref double userCreditRemaining)

@@ -8,12 +8,12 @@ double userAccBank = 2000000;
 double userCreditRemaining = 500000;
 string userPassword = "4565";
 string userInputPassword = "";
-string userName = "javlonbek";
+string userName = "aliyev javlonbek";
 string userInputName = "";
 
 Console.WriteLine("Bankomat dasturiga xush kelibsiz");
 RetryVerification:
-Console.WriteLine("Akkauntga kirish uchun foydalanuvchi ismini kiriting:");
+Console.WriteLine("Akkauntga kirish uchun foydalanuvchi Ism - Familiyasini kiriting:");
 userInputName = Console.ReadLine();
 userInputName = userInputName.ToLower();
 Console.WriteLine("Foydalanuvchi paroli:");
@@ -46,6 +46,6 @@ RetryServicePref:
 }
 else
 {
-    Console.WriteLine("Parol yoki Ism noto'g'ri, Iltamos yana urinib ko'ring");
+    Console.WriteLine("Parol yoki Ism - Familiya noto'g'ri, Iltamos yana urinib ko'ring");
     goto RetryVerification;
 }
