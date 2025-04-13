@@ -25,7 +25,7 @@ if (UserVerificationClass.UserVerification(userName, userInputName, userPassword
     Console.WriteLine("Ism va Parol to'g'ri, akkauntga kirish muvaffaqiyatli amalga oshirildi....");
 RetryServicePref:
     Console.WriteLine("1.Bankomat - Kommunal To'lovlar, Kredit, Mobil aloqa, Naqd pul olish");
-    Console.WriteLine("2.Foydalanuvchi hisobdagi puli");
+    Console.WriteLine("2.Foydalanuvchi hisobi haqidagi ma'lumotlar");
     userServicePref = Convert.ToInt32(Console.ReadLine());
     if (userServicePref != 1 && userServicePref != 2)
     {
@@ -40,7 +40,7 @@ RetryServicePref:
     }
     else if (userServicePref == 2)
     {
-        UserBalance.ShowBallance(userAccId, userAccBank);
+        UserBalance.ShowBallance(userAccId, userAccBank, userCreditRemaining);
         goto RetryServicePref;
     }
 }

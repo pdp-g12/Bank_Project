@@ -13,7 +13,7 @@ namespace Bank_Program
         {
             Console.WriteLine("Hisob raqam: " + userAccId);
             Console.WriteLine("Balans: " + userAccBalance + " so‘m");
-            Console.WriteLine("Kredit qoldig'" + userCreditRemaining);
+            Console.WriteLine("Kredit qoldig'i: " + userCreditRemaining);
         }
     }
 }
