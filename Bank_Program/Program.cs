@@ -4,6 +4,7 @@ using Bank_Program;
 //D.Javohir yozgan kodi
 int userPref = 0;
 int userServicePref = 0;
+int maxTryVerification = 3;
 string userInputPassword = "";
 string[] userNames = { "aliyev javlonbek", "toshpulatov sherzod", "doniyorov javohir", "husanov", "bill gates", "elon mask", "mark sukerberck", "pavel durov" };
 string[] userPasswords = { "4565", "1234", "7890", "0000", "1111", "2222", "3333", "4444" };
@@ -14,6 +15,11 @@ string userInputName = "";
 
 Console.WriteLine("Bankomat dasturiga xush kelibsiz");
 RetryVerification:
+if(maxTryVerification == 0)
+{
+    Console.WriteLine("Sizning urinishlaringiz tugadi, dasturdan chiqyapsiz");
+    return;
+}
 Console.WriteLine("Akkauntga kirish uchun foydalanuvchi Ism - Familiyasini kiriting:");
 userInputName = Console.ReadLine();
 userInputName = userInputName.ToLower();
@@ -21,7 +27,7 @@ Console.WriteLine("Foydalanuvchi paroli:");
 userInputPassword = Console.ReadLine();
 userInputPassword = userInputPassword.ToLower();
 
-if (UserVerificationClass.UserVerification(userNames[2], userInputName, userPasswords[2], userInputPassword))
+if (UserVerificationClass.UserVerification(userNames[2], userInputName, userPasswords[2], userInputPassword, ref maxTryVerification))
 {
     Console.WriteLine("Ism va Parol to'g'ri, akkauntga kirish muvaffaqiyatli amalga oshirildi....");
 RetryServicePref:
