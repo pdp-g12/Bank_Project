@@ -176,8 +176,17 @@ namespace Bank_Program
                             if (userAccBank < 50000) Console.WriteLine("Foydalanuvchi mablag'i kamida 500000 so'mni tashkil qilishi kerak");
                             else
                             {
+                                if(userCreditPayAmount <= 0)
+                                {
+                                    Console.WriteLine("Kredit to'lovi qolmadi!");
+                                    return;
+                                }
                                 userCreditRemaining -= userCreditPayAmount;
                                 Console.WriteLine($"Kredit to'lovi qabul qilindi, to'lov summasi: {userCreditPayAmount} so'm");
+                                if(userCreditRemaining <= 0)
+                                {
+                                    Console.WriteLine("Kredit to'lovingiz qolmadi, to'lovingiz uchun rahmat!");
+                                }
                                 return;
                             }
                         }
@@ -205,7 +214,7 @@ namespace Bank_Program
                         double userCash = Convert.ToDouble(Console.ReadLine());
                         Console.WriteLine($"Naqd pul olindi: {userCash}");
                         userAccBank -= userCash;
-                        goto Home;
+                        return;
                     }
                     break;
                 case 4:

@@ -1,13 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Bank_Program;
 
+//D.Javohir yozgan kodi
 int userPref = 0;
 int userServicePref = 0;
 string userInputPassword = "";
 string[] userNames = { "aliyev javlonbek", "toshpulatov sherzod", "doniyorov javohir", "husanov", "bill gates", "elon mask", "mark sukerberck", "pavel durov" };
 string[] userPasswords = { "4565", "1234", "7890", "0000", "1111", "2222", "3333", "4444" };
-string[] userAccIds = { "a3434hgd", "b1234hgd", "c7890hgd", "d0000hgd", "e1111hgd", "f2222hgd", "g3333hgd", "h4444hgd" };
-double[] userAccBanks = { 2000000, 3000000, 999999999, 0, 6000000, 999999, 9888888, 909999090 };
+string[] userAccIds = { "a3434hgd", "b1234hgd", "777777", "d0000hgd", "e1111hgd", "f2222hgd", "g3333hgd", "h4444hgd" };
+double[] userAccBanks = { 2000000, 3000000, 99999999999, 99, 6000000, 999999, 9888888, 909999090 };
 double[] userCreditRemainings = { 500000, 600000, 700000, 9999999, 900000, 999999, 9999999, 9999999 };
 string userInputName = "";
 
