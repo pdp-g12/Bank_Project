@@ -14,7 +14,7 @@ namespace Bank_Program
         {
             Console.WriteLine("Bank xizmatlari: ");
             Console.WriteLine("1. Kamunal to'lovlar");
-            Console.WriteLine("2. Kredit to'lovlari");
+            Console.WriteLine("2. Kredit ");
             Console.WriteLine("3. Naqd pul olish");
             Console.WriteLine("4. Mobil aloqa to'lovi");
             Console.WriteLine("Birinchi xizmat uchun 1 - ni bosing");
@@ -158,6 +158,7 @@ namespace Bank_Program
                 case 2:
                 CreditHome:
                     Console.WriteLine("1. Kredit qoldig'i");
+                    Console.WriteLine("2. Kredit olish");
                     int userCreditPref = Convert.ToInt32(Console.ReadLine());
                     int userCreditPayAmount = 0;
 
@@ -176,14 +177,14 @@ namespace Bank_Program
                             if (userAccBank < 50000) Console.WriteLine("Foydalanuvchi mablag'i kamida 500000 so'mni tashkil qilishi kerak");
                             else
                             {
-                                if(userCreditPayAmount <= 0)
+                                if (userCreditPayAmount <= 0)
                                 {
                                     Console.WriteLine("Kredit to'lovi qolmadi!");
                                     return;
                                 }
                                 userCreditRemaining -= userCreditPayAmount;
                                 Console.WriteLine($"Kredit to'lovi qabul qilindi, to'lov summasi: {userCreditPayAmount} so'm");
-                                if(userCreditRemaining <= 0)
+                                if (userCreditRemaining <= 0)
                                 {
                                     Console.WriteLine("Kredit to'lovingiz qolmadi, to'lovingiz uchun rahmat!");
                                 }
@@ -191,6 +192,38 @@ namespace Bank_Program
                             }
                         }
                         else Console.WriteLine("Xato son kiritdingiz"); goto RetryCreditPay;
+                    }
+                    else if (userCreditPref == 2)
+                    {
+                        if (userAccBank < 50000)
+                        {
+                            Console.WriteLine("Foydalanuvchi mablag'i kamida 500000 so'mni tashkil qilishi kerak");
+                            return;
+                        }
+                        else
+                        {
+                            int userCreditGetAmount = 0;
+                        RetryCreditGet:
+                            Console.WriteLine("Kredit miqdorini kiriting: ");
+                            userCreditGetAmount = Convert.ToInt32(Console.ReadLine());
+                            if (userCreditGetAmount < 0)
+                            {
+                                Console.WriteLine("Kredit miqdori manfiy bo'lmasligi kerak");
+                                goto RetryCreditGet;
+                            }
+                            else if (userCreditGetAmount > 0)
+                            {
+                                userCreditRemaining += userCreditGetAmount;
+                                userAccBank += userCreditGetAmount;
+                                Console.WriteLine($"Kredit qabul qilindi, kredit summasi: {userCreditGetAmount} so'm");
+                                return;
+                            }
+                            else if (userCreditGetAmount == 0)
+                            {
+                                Console.WriteLine("Kredit olinmadi!");
+                                return;
+                            }
+                        }
                     }
                     else Console.WriteLine("Xato son kiritdingiz"); goto CreditHome;
                 case 3:
