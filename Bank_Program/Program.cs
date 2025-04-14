@@ -1,26 +1,33 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Bank_Program;
 
+//D.Javohir yozgan kodi
 int userPref = 0;
 int userServicePref = 0;
-string userAccId = "a3434hgd";
-double userAccBank = 2000000;
-double userCreditRemaining = 500000;
-string userPassword = "4565";
+int maxTryVerification = 3;
 string userInputPassword = "";
-string userName = "javlonbek";
+string[] userNames = { "aliyev javlonbek", "toshpulatov sherzod", "doniyorov javohir", "husanov", "bill gates", "elon mask", "mark sukerberck", "pavel durov" };
+string[] userPasswords = { "4565", "1234", "7890", "0000", "1111", "2222", "3333", "4444" };
+string[] userAccIds = { "a3434hgd", "b1234hgd", "777777", "d0000hgd", "e1111hgd", "f2222hgd", "g3333hgd", "h4444hgd" };
+double[] userAccBanks = { 2000000, 3000000, 99999999999, 99, 6000000, 999999, 9888888, 909999090 };
+double[] userCreditRemainings = { 500000, 600000, 700000, 9999999, 900000, 999999, 9999999, 9999999 };
 string userInputName = "";
 
 Console.WriteLine("Bankomat dasturiga xush kelibsiz");
 RetryVerification:
-Console.WriteLine("Akkauntga kirish uchun foydalanuvchi ismini kiriting:");
+if(maxTryVerification == 0)
+{
+    Console.WriteLine("Sizning urinishlaringiz tugadi, dasturdan chiqyapsiz");
+    return;
+}
+Console.WriteLine("Akkauntga kirish uchun foydalanuvchi Ism - Familiyasini kiriting:");
 userInputName = Console.ReadLine();
 userInputName = userInputName.ToLower();
 Console.WriteLine("Foydalanuvchi paroli:");
 userInputPassword = Console.ReadLine();
 userInputPassword = userInputPassword.ToLower();
 
-if (UserVerificationClass.UserVerification(userName, userInputName, userPassword, userInputPassword))
+if (UserVerificationClass.UserVerification(userNames[2], userInputName, userPasswords[2], userInputPassword, ref maxTryVerification))
 {
     Console.WriteLine("Ism va Parol to'g'ri, akkauntga kirish muvaffaqiyatli amalga oshirildi....");
 RetryServicePref:
@@ -35,17 +42,17 @@ RetryServicePref:
     }
     else if (userServicePref == 1)
     {
-        UserBankOptions.userBankMain(userPref, ref userAccBank, ref userCreditRemaining);
+        UserBankOptions.userBankMain(userPref, ref userAccBanks[2], ref userCreditRemainings[2]);
         goto RetryServicePref;
     }
     else if (userServicePref == 2)
     {
-        UserBalance.ShowBallance(userAccId, userAccBank, userCreditRemaining);
+        UserBalance.ShowBallance(userNames[2], userAccIds[2], userAccBanks[2], userCreditRemainings[2]);
         goto RetryServicePref;
     }
 }
 else
 {
-    Console.WriteLine("Parol yoki Ism noto'g'ri, Iltamos yana urinib ko'ring");
+    Console.WriteLine("Parol yoki Ism - Familiya noto'g'ri, Iltamos yana urinib ko'ring");
     goto RetryVerification;
 }

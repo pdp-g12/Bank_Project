@@ -9,11 +9,19 @@ namespace Bank_Program
     //Javlonbek kodlari
     class UserBalance
     {
-        public static void ShowBallance(string userAccId, double userAccBalance, double userCreditRemaining)
+        public static void ShowBallance(string userName, string userAccId, double userAccBalance, double userCreditRemaining)
         {
+            userName = userName.ToUpper();
             Console.WriteLine("Hisob raqam: " + userAccId);
+            Console.WriteLine("Foydalanuvchi Ism - Familiyasi: " + userName);
             Console.WriteLine("Balans: " + userAccBalance + " so‘m");
-            Console.WriteLine("Kredit qoldig'i: " + userCreditRemaining);
+            if (userCreditRemaining <= 0) {
+                Console.WriteLine("Kredit To'lovi qolmadi");
+            }
+            else
+            {
+                Console.WriteLine("Kredit qoldig'i: " + userCreditRemaining);
+            }
         }
     }
 }
