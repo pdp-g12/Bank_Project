@@ -47,7 +47,7 @@ RetryServicePref:
     }
     else if (userServicePref == 2)
     {
-        UserBalance.ShowBallance(userAccIds[2], userAccBanks[2], userCreditRemainings[2]);
+        UserBalance.ShowBallance(userNames[2], userAccIds[2], userAccBanks[2], userCreditRemainings[2]);
         goto RetryServicePref;
     }
 }
