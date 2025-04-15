@@ -14,7 +14,7 @@ namespace Bank_Program
         {
             Console.WriteLine("Bank xizmatlari: ");
             Console.WriteLine("1. Kamunal to'lovlar");
-            Console.WriteLine("2. Kredit ");
+            Console.WriteLine("2. Kredit");
             Console.WriteLine("3. Naqd pul olish");
             Console.WriteLine("4. Mobil aloqa to'lovi");
             Console.WriteLine("Birinchi xizmat uchun 1 - ni bosing");
