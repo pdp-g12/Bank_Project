@@ -1,47 +1,35 @@
-# 💸🔥 MINI BANK PROJECT 🏦💥  
-**THE ULTIMATE CONSOLE BANKING EXPERIENCE BUILT WITH C# AND .NET 8!**
-
-Forget boring banking. This is **speed**, **power**, and **simplicity** all packed into one terminal!  
-Handle your **communal payments**, manage **credits**, and even **send money to friends** — like a BOSS! 😎
 
 ---
 
-## 👑 CREATED BY THE LEGENDS:
-- 🧠 **Jorjinio** *(the mastermind!)*
-- 🔥 **Xusanov**
-- ⚡ **Javlonbek**
-- 💻 **Sherzod**
-
-This squad built a banking app that SLAPS! 👊
+## 👑 CREATED BY THE LEGENDS ⚔️
+| Name      | Role             |
+|-----------|------------------|
+| 🧠 Jorjinio   | The Mastermind      |
+| 🔥 Xusanov    | Code Warrior        |
+| ⚡ Javlonbek  | Logic Commander     |
+| 💻 Sherzod    | Terminal Tactician  |
 
 ---
 
 ## 🚀 FEATURES THAT GO HARD:
-- 💡 **Pay for Communal Services**  
-  🔌 Electricity  
-  💧 Water  
-  🔥 Gas  
-
-- 💰 **Take & Repay Credits**  
-  Fast. Easy. Instant.
-
-- 💸 **Send Money to Another Account**  
-  Just type the names and the amount — boom! Transfer complete 💥
-
-- 🧾 **View Your Balance Anytime**  
-  Never lose track of your cash again 💰
+| Feature                       | Status |
+|------------------------------|--------|
+| 🔌 Pay Communal Services     | ✅     |
+| 💰 Take & Repay Credits      | ✅     |
+| 💸 Send Money to Friends     | ✅     |
+| 🧾 View Balance              | ✅     |
 
 ---
 
-## ⚙️ TECH STACK (POWER MODE ON):
-- 🧠 **Language:** C#  
-- ⚙️ **Framework:** .NET 8  
-- 🎮 **UI:** Console Application  
-- 💾 **Storage:** File-based system (fast, light, and powerful)
+## 💻 DEMO PREVIEW:
+
+![Bank System Demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjMwMThzZ2E1Njd3a2MyMmcyaHZtaXR2dzAxenNyZzh2YXU0a2NmMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/g9582DNuQppxC/giphy.gif)
+
+*Making moves like a financial ninja.* 💸
 
 ---
 
-## ▶️ HOW TO RUN THIS BEAST:
+## ▶️ RUN THIS BAD BOY:
 
 ```bash
 git clone https://github.com/yourusername/MiniBankProject.git
