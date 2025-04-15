@@ -55,7 +55,7 @@ RetryServicePref:
     }
     else if (userServicePref == 3)
     {
-        Console.WriteLine("Akkauntdan chiqyapsiz.......");
+        Console.WriteLine("Akkauntdan chiqyapsiz........");
         goto UserAccountHome;
     }
 }
