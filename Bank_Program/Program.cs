@@ -50,12 +50,12 @@ RetryServicePref:
     }
     else if (userServicePref == 2)
     {
-        UserBalance.ShowBallance(userAccIds[userAccPref], userAccBanks[userAccPref], userCreditRemainings[userAccPref]);
+        UserBalance.ShowBallance(userNames[userAccPref], userAccIds[userAccPref], userAccBanks[userAccPref], userCreditRemainings[userAccPref]);
         goto RetryServicePref;
     }
     else if (userServicePref == 3)
     {
-        Console.WriteLine("Akkauntdan chiqyapsiz........");
+        Console.WriteLine("Akkauntdan chiqyapsiz......");
         goto UserAccountHome;
     }
 }
