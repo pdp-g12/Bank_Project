@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,17 +11,26 @@ namespace Bank_Program
     //Xusanov(Shu class kodlarini yozgan odam) & D.Javohir(kodni tartibga kiritgan odam) & Sherzod va Husanov tomonidan kredit ideasi qilgan odamlar
     class UserBankOptions
     {
-        public static void userBankMain(int userBankPref, ref double userAccBank, ref double userCreditRemaining)
+        public static void userBankMain(int userBankPref, ref double userAccBank, ref double userCreditRemaining, ref string userFindAccountInput, ref string UserMoneyTransferAccInsurrance)
         {
+            int skipIntroduction = 0;
+            if (UserMoneyTransferAccInsurrance == "yoq")
+            {
+                skipIntroduction = 1;
+                userBankPref = 5;
+                goto UserMoneyTransferSkip;
+            }
             Console.WriteLine("Bank xizmatlari: ");
             Console.WriteLine("1. Kamunal to'lovlar");
-            Console.WriteLine("2. Kredit ");
+            Console.WriteLine("2. Kredit");
             Console.WriteLine("3. Naqd pul olish");
             Console.WriteLine("4. Mobil aloqa to'lovi");
-            Console.WriteLine("Birinchi xizmat uchun 1 - ni bosing");
-            Console.WriteLine("Ikkinchi xizmat uchun 2 - ni bosing");
+            Console.WriteLine("5. Boshqa foydalanuvchiga pul tashlash");
+            Console.WriteLine("6. Bosh sahifaga o'tish");
             userBankPref = Convert.ToInt32(Console.ReadLine());
             int userInsurrancePref = 0;
+
+        UserMoneyTransferSkip:
 
             switch (userBankPref)
             {
@@ -174,7 +184,11 @@ namespace Bank_Program
                         {
                             Console.WriteLine("Kredit to'lovi miqdori kiriting: ");
                             userCreditPayAmount = Convert.ToInt32(Console.ReadLine());
-                            if (userAccBank < 50000) Console.WriteLine("Foydalanuvchi mablag'i kamida 500000 so'mni tashkil qilishi kerak");
+                            if (userAccBank < 50000)
+                            {
+                                Console.WriteLine("Foydalanuvchi mablag'i kamida 500000 so'mni tashkil qilishi kerak");
+                                return;
+                            }
                             else
                             {
                                 if (userCreditPayAmount <= 0)
@@ -341,6 +355,27 @@ namespace Bank_Program
                         }
                     }
                     break;
+                case 5:
+                    if (userAccBank < 20000)
+                    {
+                        Console.WriteLine("Foydalanuvchida yetarli mablag' mavjud emas"); return;
+                    }
+                    else
+                    {
+                        if (skipIntroduction == 1)
+                        {
+                            goto SkipMoneyTransferIntroduction;
+                        }
+                        Console.WriteLine("Boshqa foydalanuvchiga pul o'tkazish");
+                    SkipMoneyTransferIntroduction:
+                        Console.WriteLine("Foydalanuvchi Ism - Familiyasini kiriting: ");
+                        userFindAccountInput = Console.ReadLine();
+                        userFindAccountInput = userFindAccountInput.ToLower();
+                        return;
+                    }
+                case 6:
+                    Console.WriteLine("Bosh sahifaga qaytish");
+                    return;
             }
         }
     }

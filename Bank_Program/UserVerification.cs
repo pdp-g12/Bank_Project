@@ -9,24 +9,27 @@ namespace Bank_Program
     class UserVerificationClass
     {
         //Sherzod tomonidan yozilgan kod
-        public static bool UserVerification(string userName, string userInputName, string userPassword, string userInputPassword, ref int maxTryVerification)
+        public static bool UserVerification(string[] userNames, string userInputName, string[] userPasswords, string userInputPassword, ref int maxTryVerification, ref int userAccPref)
         {
-            if (userName == userInputName)
+            bool userVerification = false;
+            for (int i = 0; i < userNames.Length; i++)
             {
-                if (userPassword == userInputPassword)
+                if (userInputName == userNames[i] && userInputPassword == userPasswords[i])
                 {
-                    return true;
+                    userVerification = true;
+                    userAccPref = i;
+                    break;
                 }
-                else
-                {
-                    Console.WriteLine("Parol noto'g'ri, Iltimos yana urinib ko'ring");
-                    maxTryVerification--;
-                    return false;
-                }
+            }
+            if (userVerification)
+            {
+                return true;
             }
             else
             {
                 maxTryVerification--;
+                Console.WriteLine("Ism yoki parol xato, qaytadan urinib ko'ring");
+                Console.WriteLine("Qolgan urinishlaringiz: " + maxTryVerification);
                 return false;
             }
         }

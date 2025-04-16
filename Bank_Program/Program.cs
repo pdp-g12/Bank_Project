@@ -4,6 +4,9 @@ using Bank_Program;
 //D.Javohir yozgan kodi
 int userPref = 0;
 int userServicePref = 0;
+int userAccPref = 0;
+string userFindAccountInput = "";
+string userMoneyTransferAccInsurance = "";
 int maxTryVerification = 3;
 string userInputPassword = "";
 string[] userNames = { "aliyev javlonbek", "toshpulatov sherzod", "doniyorov javohir", "husanov", "bill gates", "elon mask", "mark sukerberck", "pavel durov" };
@@ -13,13 +16,26 @@ double[] userAccBanks = { 2000000, 3000000, 99999999999, 99, 6000000, 999999, 98
 double[] userCreditRemainings = { 500000, 600000, 700000, 9999999, 900000, 999999, 9999999, 9999999 };
 string userInputName = "";
 
+ProgramRestart:
+
+if (userFindAccountInput != "")
+{
+    UserMoneyTransfers.UserMoneyTransfer(userNames, ref userAccBanks, ref userAccPref, ref userFindAccountInput, ref userMoneyTransferAccInsurance);
+    UserBankOptions.userBankMain(userPref, ref userAccBanks[userAccPref], ref userCreditRemainings[userAccPref], ref userFindAccountInput, ref userMoneyTransferAccInsurance);
+    if (userFindAccountInput != "")
+    {
+        goto ProgramRestart;
+    }
+    else goto SkipAccLog;
+}
 Console.WriteLine("Bankomat dasturiga xush kelibsiz");
 RetryVerification:
-if(maxTryVerification == 0)
+if (maxTryVerification == 0)
 {
     Console.WriteLine("Sizning urinishlaringiz tugadi, dasturdan chiqyapsiz");
     return;
 }
+UserAccountHome:
 Console.WriteLine("Akkauntga kirish uchun foydalanuvchi Ism - Familiyasini kiriting:");
 userInputName = Console.ReadLine();
 userInputName = userInputName.ToLower();
@@ -27,28 +43,39 @@ Console.WriteLine("Foydalanuvchi paroli:");
 userInputPassword = Console.ReadLine();
 userInputPassword = userInputPassword.ToLower();
 
-if (UserVerificationClass.UserVerification(userNames[2], userInputName, userPasswords[2], userInputPassword, ref maxTryVerification))
+SkipAccLog:
+if (UserVerificationClass.UserVerification(userNames, userInputName, userPasswords, userInputPassword, ref maxTryVerification, ref userAccPref))
 {
     Console.WriteLine("Ism va Parol to'g'ri, akkauntga kirish muvaffaqiyatli amalga oshirildi....");
 RetryServicePref:
     Console.WriteLine("1.Bankomat - Kommunal To'lovlar, Kredit, Mobil aloqa, Naqd pul olish");
     Console.WriteLine("2.Foydalanuvchi hisobi haqidagi ma'lumotlar");
+    Console.WriteLine("3.Akkauntan chiqish");
     userServicePref = Convert.ToInt32(Console.ReadLine());
-    if (userServicePref != 1 && userServicePref != 2)
+    if (userServicePref != 1 && userServicePref != 2 && userServicePref != 3)
     {
         Console.WriteLine("Xato son kiritdingiz, qaytadan urinib ko'ring");
-        Console.WriteLine("1 yoki 2 ni bosing");
+        Console.WriteLine("1, 2 yoki 3 ni bosing");
         goto RetryServicePref;
     }
     else if (userServicePref == 1)
     {
-        UserBankOptions.userBankMain(userPref, ref userAccBanks[2], ref userCreditRemainings[2]);
-        goto RetryServicePref;
+        UserBankOptions.userBankMain(userPref, ref userAccBanks[userAccPref], ref userCreditRemainings[userAccPref], ref userFindAccountInput, ref userMoneyTransferAccInsurance);
+        if (userFindAccountInput != "")
+        {
+            goto ProgramRestart;
+        }
+        else goto RetryServicePref;
     }
     else if (userServicePref == 2)
     {
-        UserBalance.ShowBallance(userNames[2], userAccIds[2], userAccBanks[2], userCreditRemainings[2]);
+        UserBalance.ShowBallance(userNames[userAccPref], userAccIds[userAccPref], userAccBanks[userAccPref], userCreditRemainings[userAccPref]);
         goto RetryServicePref;
+    }
+    else if (userServicePref == 3)
+    {
+        Console.WriteLine("Akkauntdan chiqyapsiz......");
+        goto UserAccountHome;
     }
 }
 else
