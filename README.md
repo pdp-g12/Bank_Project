@@ -7,7 +7,7 @@ _Experience lightning-fast transactions with power, style, and simplicity!_
 ---
 
 ## 👑 CREATED BY THE LEGENDS:
-- 🧠 **Jorjinio** *(the mastermind!)*  
+- 🧠 **Jorjinio**  
 - 🔥 **Xusanov**  
 - ⚡ **Javlonbek**  
 - 💻 **Sherzod**
