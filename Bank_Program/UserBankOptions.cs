@@ -2,22 +2,35 @@
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Bank_Program
 {
+    //Xusanov(Shu class kodlarini yozgan odam) & D.Javohir(kodni tartibga kiritgan odam) & Sherzod va Husanov tomonidan kredit ideasi qilgan odamlar
     class UserBankOptions
     {
-        public static void userBankMain(int userBankPref, ref double userAccBank, ref double userCreditRemaining)
+        public static void userBankMain(int userBankPref, ref double userAccBank, ref double userCreditRemaining, ref string userFindAccountInput, ref string UserMoneyTransferAccInsurrance)
         {
+            int skipIntroduction = 0;
+            if (UserMoneyTransferAccInsurrance == "yoq")
+            {
+                skipIntroduction = 1;
+                userBankPref = 5;
+                goto UserMoneyTransferSkip;
+            }
             Console.WriteLine("Bank xizmatlari: ");
             Console.WriteLine("1. Kamunal to'lovlar");
-            Console.WriteLine("2. Kredit to'lovlari");
-            Console.WriteLine("Birinchi xizmat uchun 1 - ni bosing");
-            Console.WriteLine("Ikkinchi xizmat uchun 2 - ni bosing");
+            Console.WriteLine("2. Kredit");
+            Console.WriteLine("3. Naqd pul olish");
+            Console.WriteLine("4. Mobil aloqa to'lovi");
+            Console.WriteLine("5. Boshqa foydalanuvchiga pul tashlash");
+            Console.WriteLine("6. Bosh sahifaga o'tish");
             userBankPref = Convert.ToInt32(Console.ReadLine());
             int userInsurrancePref = 0;
+
+        UserMoneyTransferSkip:
 
             switch (userBankPref)
             {
@@ -126,8 +139,12 @@ namespace Bank_Program
                                 Console.WriteLine("Xato kiritdingiz, qaytadan urinib ko'ring");
                                 goto Home;
                             }
-                            else if (userInsurrancePref == 2) Console.WriteLine("To'lovingiz uchun rahmat salomat bo'ling");
-                            RepeatPay:
+                            else if (userInsurrancePref == 2)
+                            {
+                                Console.WriteLine("To'lovingiz uchun rahmat salomat bo'ling");
+                                return;
+                            }
+                        RepeatPay:
                             Console.WriteLine("Yana kamunal tolov qilasizmi? ");
                             Console.WriteLine("1. Ha ");
                             Console.WriteLine("2. Yoq ");
@@ -151,6 +168,7 @@ namespace Bank_Program
                 case 2:
                 CreditHome:
                     Console.WriteLine("1. Kredit qoldig'i");
+                    Console.WriteLine("2. Kredit olish");
                     int userCreditPref = Convert.ToInt32(Console.ReadLine());
                     int userCreditPayAmount = 0;
 
@@ -159,25 +177,205 @@ namespace Bank_Program
                         Console.WriteLine($"kredit qoldig'i: {userCreditRemaining}");
                     RetryCreditPay:
                         Console.WriteLine("1. Kredit to'lash ");
-                        
+
                         int userPayCreditPref = Convert.ToInt32(Console.ReadLine());
 
                         if (userPayCreditPref == 1)
                         {
                             Console.WriteLine("Kredit to'lovi miqdori kiriting: ");
                             userCreditPayAmount = Convert.ToInt32(Console.ReadLine());
-                            if (userAccBank < 50000) Console.WriteLine("Foydalanuvchi mablag'i kamida 500000 so'mni tashkil qilishi kerak");
+                            if (userAccBank < 50000)
+                            {
+                                Console.WriteLine("Foydalanuvchi mablag'i kamida 500000 so'mni tashkil qilishi kerak");
+                                return;
+                            }
                             else
                             {
+                                if (userCreditPayAmount <= 0)
+                                {
+                                    Console.WriteLine("Kredit to'lovi qolmadi!");
+                                    return;
+                                }
                                 userCreditRemaining -= userCreditPayAmount;
                                 Console.WriteLine($"Kredit to'lovi qabul qilindi, to'lov summasi: {userCreditPayAmount} so'm");
+                                if (userCreditRemaining <= 0)
+                                {
+                                    Console.WriteLine("Kredit to'lovingiz qolmadi, to'lovingiz uchun rahmat!");
+                                }
                                 return;
                             }
                         }
                         else Console.WriteLine("Xato son kiritdingiz"); goto RetryCreditPay;
                     }
+                    else if (userCreditPref == 2)
+                    {
+                        if (userAccBank < 50000)
+                        {
+                            Console.WriteLine("Foydalanuvchi mablag'i kamida 500000 so'mni tashkil qilishi kerak");
+                            return;
+                        }
+                        else
+                        {
+                            int userCreditGetAmount = 0;
+                        RetryCreditGet:
+                            Console.WriteLine("Kredit miqdorini kiriting: ");
+                            userCreditGetAmount = Convert.ToInt32(Console.ReadLine());
+                            if (userCreditGetAmount < 0)
+                            {
+                                Console.WriteLine("Kredit miqdori manfiy bo'lmasligi kerak");
+                                goto RetryCreditGet;
+                            }
+                            else if (userCreditGetAmount > 0)
+                            {
+                                userCreditRemaining += userCreditGetAmount;
+                                userAccBank += userCreditGetAmount;
+                                Console.WriteLine($"Kredit qabul qilindi, kredit summasi: {userCreditGetAmount} so'm");
+                                return;
+                            }
+                            else if (userCreditGetAmount == 0)
+                            {
+                                Console.WriteLine("Kredit olinmadi!");
+                                return;
+                            }
+                        }
+                    }
                     else Console.WriteLine("Xato son kiritdingiz"); goto CreditHome;
+                case 3:
+                RetryCashPay:
+                    Console.WriteLine("1.Naqd pul olish");
 
+                    int userCashPref = Convert.ToInt32(Console.ReadLine());
+                    if (userCashPref <= 0 || userCashPref > 1)
+                    {
+                        Console.WriteLine("Xato kiritdingiz, qaytadan urinib ko'ring:");
+                        goto RetryCashPay;
+                    }
+                    if (userAccBank < 20000)
+                    {
+                        Console.WriteLine("Foydalanuvchi mablag'i kamida 20000 so'mni tashkil qilishi kerak");
+                        return;
+                    }
+                    if (userCashPref == 1)
+                    {
+                        Console.WriteLine("Naqd pul olish summasini kiriting:");
+                        double userCash = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine($"Naqd pul olindi: {userCash}");
+                        userAccBank -= userCash;
+                        return;
+                    }
+                    break;
+                case 4:
+                MobileCallHome:
+                    Console.WriteLine("1.Mobil aloqa to'lovi");
+                    int mobileCall = Convert.ToInt32(Console.ReadLine());
+                    if (mobileCall <= 0 || mobileCall > 1)
+                    {
+                        Console.WriteLine("Xato kiritdingiz, qaytadan urinib ko'ring");
+                        goto MobileCallHome;
+                    }
+                    if (mobileCall == 1)
+                    {
+                    UserMobileCallPrefHome:
+                        Console.WriteLine("1. Ucell");
+                        Console.WriteLine("2. Beeline");
+                        Console.WriteLine("3. Uzmobile");
+                        int mobileType = Convert.ToInt32(Console.ReadLine());
+                        if (mobileType <= 0 || mobileType > 3)
+                        {
+                            Console.WriteLine("Xato kiritdingiz, qaytadan urinib ko'ring");
+                            goto UserMobileCallPrefHome;
+                        }
+                        else if (mobileType == 1)
+                        {
+                        UcellHome:
+                            Console.WriteLine("Ucell uchun to'lov summasini kiriting: ");
+                            double userUcellMobileInputPrice = Convert.ToDouble(Console.ReadLine());
+                            if (userAccBank >= 2000)
+                            {
+                                Console.WriteLine($"Ucell uchun to'lov qabul qilindi: {userUcellMobileInputPrice}");
+                                userAccBank -= userUcellMobileInputPrice;
+                            }
+                            else if (userAccBank < 2000)
+                            {
+                                Console.WriteLine("Foydalanuvchi mablag'i kamida 2000 so'mni tashkil qilishi kerak");
+                            }
+                            else if (userUcellMobileInputPrice < 2000)
+                            {
+                                Console.WriteLine("Yetarli Mablag' kiritnagansiz!");
+                                Console.WriteLine("Kamida 2000so'm mablag' to'lanishi kerak");
+                                goto UcellHome;
+                            }
+                        }
+                        else if (mobileType == 2)
+                        {
+                        BeelineHome:
+                            Console.WriteLine("Beeline uchun to'lov summasini kiriting: ");
+                            double userBeelineMobileInputPrice = Convert.ToDouble(Console.ReadLine());
+                            if (userAccBank >= 2000)
+                            {
+                                Console.WriteLine($"Beeline uchun to'lov qabul qilindi: {userBeelineMobileInputPrice}");
+                                userAccBank -= userBeelineMobileInputPrice;
+                            }
+                            else if (userAccBank < 2000)
+                            {
+                                Console.WriteLine("Foydalanuvchi mablag'i kamida 2000 so'mni tashkil qilishi kerak");
+                            }
+                            else if (userBeelineMobileInputPrice < 2000)
+                            {
+                                Console.WriteLine("Yetarli Mablag' kiritnagansiz!");
+                                Console.WriteLine("Kamida 2000so'm mablag' to'lanishi kerak");
+                                goto BeelineHome;
+                            }
+                        }
+                        else if (mobileType == 3)
+                        {
+                        UzMobileHome:
+                            Console.WriteLine("Uzmobile uchun to'lov summasini kiriting: ");
+                            double userUzMobileMobileInputPrice = Convert.ToDouble(Console.ReadLine());
+                            if (userAccBank >= 2000)
+                            {
+                                Console.WriteLine($"UzMobile uchun to'lov qabul qilindi: {userUzMobileMobileInputPrice}");
+                                userAccBank -= userUzMobileMobileInputPrice;
+                            }
+                            else if (userAccBank < 2000)
+                            {
+                                Console.WriteLine("Foydalanuvchi mablag'i kamida 2000 so'mni tashkil qilishi kerak");
+                            }
+                            else if (userUzMobileMobileInputPrice < 2000)
+                            {
+                                Console.WriteLine("Yetarli Mablag' kiritnagansiz!");
+                                Console.WriteLine("Kamida 2000so'm mablag' to'lanishi kerak");
+                                goto UzMobileHome;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Xato son kiritdingiz ");
+                            goto MobileCallHome;
+                        }
+                    }
+                    break;
+                case 5:
+                    if (userAccBank < 20000)
+                    {
+                        Console.WriteLine("Foydalanuvchida yetarli mablag' mavjud emas"); return;
+                    }
+                    else
+                    {
+                        if (skipIntroduction == 1)
+                        {
+                            goto SkipMoneyTransferIntroduction;
+                        }
+                        Console.WriteLine("Boshqa foydalanuvchiga pul o'tkazish");
+                    SkipMoneyTransferIntroduction:
+                        Console.WriteLine("Foydalanuvchi Ism - Familiyasini kiriting: ");
+                        userFindAccountInput = Console.ReadLine();
+                        userFindAccountInput = userFindAccountInput.ToLower();
+                        return;
+                    }
+                case 6:
+                    Console.WriteLine("Bosh sahifaga qaytish");
+                    return;
             }
         }
     }
